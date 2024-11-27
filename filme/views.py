@@ -31,6 +31,12 @@ class DetailsFilmes(DetailView): # DetailView return object
     template_name = 'detalhesfilmes.html'
     model = Filme
 
+    def get(self, request, *args, **kwargs):
+        filme = self.get_object()
+        filme.views += 1
+        filme.save()
+        return super().get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(DetailsFilmes, self).get_context_data(**kwargs)
         filmes_relacionados = Filme.objects.filter(categoria=self.get_object().categoria)[0:5]
