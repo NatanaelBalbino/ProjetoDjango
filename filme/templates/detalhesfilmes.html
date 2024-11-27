@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+{{ object }}
+{% endblock %}
+
+
+{% block content %}
+<div class="py-20">
+    <h1>Esse é o detalhe do Filme: {{ object.titulo }}</h1>
+    <p>{{ object}}</p>
+    <p>{{ object.descricao }}</p>
+    <img src="{{ object.thumb.url }}">
+
+    <h2>Episodios</h2>
+    {% for episodio in object.episodios.all %}
+        <a href="{{ episodio.video }}">
+            <p>Episódio {{ forloop.counter }}: {{ episodio.titulo }}</p>
+        </a>
+    {% endfor %}
+</div>
+<div class="py-20">
+    <h1>Relacionados</h1>
+    {% for filme in filmes_relacionados %}
+    <p>
+        <a href="{% url 'filme:detalhesfilmes' filme.pk %}">
+            {{ filme.titulo }}
+        </a>
+    </p>
+    {% endfor %}
+</div>
+{% endblock %}
