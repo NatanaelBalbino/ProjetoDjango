@@ -64,7 +64,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'filme.context_gen.lista_filmes_recentes',
-                'filme.context_gen.lista_filme_em_alta'
+                'filme.context_gen.lista_filme_em_alta',
+                'filme.context_gen.filme_destaque'
+
             ],
         },
     },
@@ -86,6 +88,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = "filme.Usuario"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
